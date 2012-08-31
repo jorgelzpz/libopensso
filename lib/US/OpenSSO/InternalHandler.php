@@ -11,20 +11,20 @@
 namespace US\OpenSSO;
 
 /**
-  * Class for OpenSSO integration
+  * Helper class for OpenSSO integration
   * @package libopensso-php
   */
-class Handler {
+class InternalHandler {
 
 	/**
 	 * Library version, used inside User-Agent
 	 */
-	const version = '1.0.1-alpha';
+	const VERSION = '1.0.1-alpha';
 
 	/**
 	 * Default cookie name
 	 */
-	const cookiename = 'iPlanetDirectoryPro';
+	const DEFAULT_COOKIENAME = 'iPlanetDirectoryPro';
 
 	/**
 	 * Metadata path
@@ -89,36 +89,8 @@ class Handler {
 		}
 
         $this->createStream();
-        $this->set_cookie_name($fetch_cookie_name);
+        $this->setCookieName($fetch_cookie_name);
         $this->readToken();
-	}
-
-	/**
-	 * Forces OpenSSO login
-	 *
-	 * @param string $gotourl	Return URL. If not specified, current URL is used
-	 * @return boolean	User has a valid SSO session or not
-	 */
-	public function check_and_force_sso($gotourl = '') {
-		/*
-		 * 1. Look for current token
-		 * 2. If not present, redirect user
-		 * 3. If present, check for validity
-		 * 3.1. If valid session found, return TRUE
-		 * 3.2. If not, redirect user
-		 */
-		if (!$this->check_sso()) {
-			if (empty($gotourl)) {
-				$gotourl = $this->current_url();
-			}
-
-			header("Location: " . $this->metadata['login_url']
-					. '?goto=' . urlencode($gotourl));
-
-			return FALSE;
-		} else {
-			return TRUE;
-		}
 	}
 
 	/**
@@ -127,14 +99,14 @@ class Handler {
 	 * @return boolean	User has a valid SSO session or not
 	 */
 
-	public function check_sso() {
+	public function validateToken() {
 		if (empty($this->token)) {
 			return FALSE;
 		}
 
 		// Check for valid session
 		try {
-			$res = $this->identity_query('isTokenValid', 'GET',
+			$res = $this->doRequest('isTokenValid', 'GET',
 					'tokenid=' . urlencode($this->token));
 		} catch (\Exception $e) {
 			$this->token = '';
@@ -151,7 +123,7 @@ class Handler {
 
 		if (preg_match('/true/', $res)) {
 			// SSO token is valid
-			$this->fetch_attributes();
+			$this->fetchAttributes();
 			return TRUE;
 		} else {
 			$this->token = '';
@@ -167,12 +139,12 @@ class Handler {
 	 * @return void
 	 */
 
-	protected function fetch_attributes() {
+	protected function fetchAttributes() {
 		if (empty($this->token)) {
 			throw new \Exception('Empty token');
 		}
 
-		$res = $this->identity_query('attributes', 'GET',
+		$res = $this->doRequest('attributes', 'GET',
 				'subjectid=' . urlencode($this->token));
 
 		$attributes = array();
@@ -217,7 +189,7 @@ class Handler {
 	 * @throw \Exception Thrown on connection problems and when HTTP response code is not 200
 	 */
 
-	protected function identity_query($service, $method = 'GET', $query = '') {
+	protected function doRequest($service, $method = 'GET', $query = '') {
 		$uri = parse_url($this->metadata['ws_base_url'] . $service);
 
 		$socket_dest = $uri['scheme'] == 'http' ? 'tcp' : 'ssl';
@@ -273,7 +245,7 @@ class Handler {
 		$defaults = array(
 				'Host' => "Host: " . $uri['host'],
 				'User-Agent' => 'User-Agent: libopensso-php '
-					. self::version,
+					. self::VERSION,
 		);
 
 		$request = $method .' '. $path ." HTTP/1.0\r\n";
@@ -334,7 +306,7 @@ class Handler {
 	 *
 	 * @param boolean $force_arrays Force use of arrays even on single valued attributes
 	 */
-	public function all_attributes($force_arrays = FALSE) {
+	public function allAttributes($force_arrays = FALSE) {
 		$atr = array();
 		if ($force_arrays === TRUE) {
 			foreach ($this->attributes as $a => $v) {
@@ -350,40 +322,23 @@ class Handler {
 		return $atr;
 	}
 
+    /**
+     * Returns login URL for current environment
+     *
+     * @return string OpenSSO login URL
+     */
+    public function getLoginUrl() {
+        return $this->metadata['login_url'];
+    }
 
-	/**
-	 * Logs out user from OpenSSO
-	 *
-	 * @param string $gotourl URL to return to after logging out
-	 */
-	public function logout($gotourl = '') {
-		// IE bug. If testExplorerBug cookie is not set, it means
-		// it didn't store any cookies for *.xx.tld, so
-		// unset cookie for current hostname
-		if (!isset($_COOKIE['testExplorerBug'])) {
-			setcookie($this->cookiename, "", time() - 3600, "/");
-		}
-
-		$gotourl = empty($gotourl) ? $this->current_url() : $gotourl;
-		header("Location: " . $this->metadata['logout_url']
-				. "?goto=" . urlencode($gotourl));
-	}
-
-
-
-	/**
-	 * Returns current URL
-	 *
-	 * @internal
-	 * @return string Current URL
-	 */
-
-	private function current_url() {
-		return (isset($_SERVER['HTTPS']) ? 'https' : 'http')
-			. '://' . $_SERVER['SERVER_NAME']  . ':'
-			. $_SERVER['SERVER_PORT']
-			. $_SERVER['REQUEST_URI'];
-	}
+    /**
+     * Returns logout URL for current environment
+     *
+     * @return string OpenSSO logout URL
+     */
+    public function getLogoutUrl() {
+        return $this->metadata['logout_url'];
+    }
 
     /**
      * Creates data stream to server with SSL options
@@ -426,12 +381,12 @@ class Handler {
      * @param boolean $ask_server Ask server for cookie name if TRUE
      */
 
-    private function set_cookie_name($ask_server = FALSE) {
+    private function setCookieName($ask_server = FALSE) {
         if (TRUE === $ask_server) {
-            $res = $this->identity_query('getCookieNameForToken', 'POST');
+            $res = $this->doRequest('getCookieNameForToken', 'POST');
             $this->cookiename = preg_replace('/^string=/', '', $res);
         } else {
-            $this->cookiename = self::cookiename;
+            $this->cookiename = self::DEFAULT_COOKIENAME;
         }
     }
 
