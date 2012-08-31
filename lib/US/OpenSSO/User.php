@@ -15,7 +15,7 @@ namespace US\OpenSSO;
   * @package libopensso-php
   */
 
-class Manager {
+class User {
 
     /**
      * OpenSSO internal handler

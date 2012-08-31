@@ -2,11 +2,11 @@
 
 require_once('../vendor/autoload.php');
 
-$a = new US\OpenSSO\Handler();
+$u = new US\OpenSSO\User();
 
-if ($a->check_and_force_sso()) {
+if ($u->enforceAuthentication()) {
 	echo '<h1>Your attributes:</h1>';
-	$attr = $a->all_attributes(TRUE);
+	$attr = $u->allAttributes(TRUE);
 	foreach ($attr as $name => $values) {
 		echo '<h2>' . $name . '</h2>';
 		echo '<ul>';

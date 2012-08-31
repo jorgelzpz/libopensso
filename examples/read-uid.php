@@ -5,7 +5,7 @@ require_once('../vendor/autoload.php');
 $u = new US\OpenSSO\User();
 
 if ($u->isAuthenticated()) {
-	$u->logout();
+    echo "Hi, " . $u->uid;
 } else {
-	echo 'You are not logged in';
+	echo "You're not logged in";
 }
