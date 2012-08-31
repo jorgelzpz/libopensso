@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a3" title="libopensso-php">
-  <file path="OpenSSO/Handler.php" hash="fd5bd3632ab548d365254e94d7cb5fdf" package="libopensso-php">
+  <file path="US/OpenSSO/Handler.php" hash="8ff541e8bbef348befe8c074ec9771f8" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -9,24 +9,24 @@
       <tag line="2" name="version" description="1.0"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
-    <class final="false" abstract="false" namespace="OpenSSO" line="17" package="libopensso-php">
+    <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
       <name>Handler</name>
-      <full_name>\OpenSSO\Handler</full_name>
+      <full_name>\US\OpenSSO\Handler</full_name>
       <extends/>
       <docblock line="13">
         <description><![CDATA[Class for OpenSSO integration]]></description>
         <long-description><![CDATA[]]></long-description>
         <tag line="13" name="package" description="libopensso-php"/>
       </docblock>
-      <constant namespace="OpenSSO" line="22" package="libopensso-php">
+      <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
         <name>version</name>
-        <value><![CDATA['1.0-dev']]></value>
+        <value><![CDATA['1.0.1-alpha']]></value>
         <docblock line="19">
           <description><![CDATA[Library version, used inside User-Agent]]></description>
           <long-description><![CDATA[]]></long-description>
         </docblock>
       </constant>
-      <constant namespace="OpenSSO" line="27" package="libopensso-php">
+      <constant namespace="US\OpenSSO" line="27" package="libopensso-php">
         <name>cookiename</name>
         <value><![CDATA['iPlanetDirectoryPro']]></value>
         <docblock line="24">
@@ -90,7 +90,7 @@
           <long-description><![CDATA[]]></long-description>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="73" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="73" package="">
         <name>__construct</name>
         <type>function</type>
         <docblock line="64">
@@ -125,7 +125,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="151" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="151" package="">
         <name>check_and_force_sso</name>
         <type>function</type>
         <docblock line="145">
@@ -144,7 +144,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="179" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="179" package="">
         <name>check_sso</name>
         <type>function</type>
         <docblock line="173">
@@ -155,7 +155,7 @@
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="OpenSSO" line="219" package="">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="219" package="">
         <name>fetch_attributes</name>
         <type>function</type>
         <docblock line="212">
@@ -167,7 +167,7 @@
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="OpenSSO" line="269" package="">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="269" package="">
         <name>identity_query</name>
         <type>function</type>
         <docblock line="258">
@@ -206,7 +206,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="364" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="364" package="">
         <name>attribute</name>
         <type>function</type>
         <docblock line="357">
@@ -230,7 +230,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="386" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="386" package="">
         <name>all_attributes</name>
         <type>function</type>
         <docblock line="381">
@@ -246,7 +246,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="OpenSSO" line="408" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="408" package="">
         <name>logout</name>
         <type>function</type>
         <docblock line="403">
@@ -262,7 +262,7 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="OpenSSO" line="430" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="430" package="">
         <name>current_url</name>
         <type>function</type>
         <docblock line="423">
@@ -278,7 +278,9 @@
   </file>
   <package name="" full_name=""/>
   <package name="libopensso-php" full_name="libopensso-php"/>
-  <namespace name="OpenSSO" full_name="OpenSSO"/>
+  <namespace name="US" full_name="US">
+    <namespace name="OpenSSO" full_name="US\OpenSSO"/>
+  </namespace>
   <marker count="0">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>

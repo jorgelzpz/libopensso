@@ -8,7 +8,7 @@
  * @package libopensso-php
  */
 
-namespace OpenSSO;
+namespace US\OpenSSO;
 
 /**
   * Class for OpenSSO integration
@@ -19,7 +19,7 @@ class Handler {
 	/**
 	 * Library version, used inside User-Agent
 	 */
-	const version = '1.0.0-alpha';
+	const version = '1.0.1-alpha';
 
 	/**
 	 * Default cookie name
