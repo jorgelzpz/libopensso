@@ -74,7 +74,7 @@ class Handler {
 			$metadata_dir = '') {
 		// Set current path
 		$this->path = empty($metadata_dir) ?
-			dirname(__FILE__) . '/../../metadata_default/' :
+			dirname(__FILE__) . '..//../../metadata_default/' :
 			$metadata_dir;
 
 		// Initialization
