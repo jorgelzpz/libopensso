@@ -88,58 +88,9 @@ class Handler {
 			$this->metadata = $metadata[$env];
 		}
 
-		$this->context = stream_context_create();
-
-		// SSL verification
-		$options = array('ssl' =>
-				array(
-					'verify_peer' => TRUE,
-					'cafile' => $this->path . '/crt/' . $env . '/ca.crt',
-					'capture_peer_cert' => TRUE,
-					));
-
-		if (isset($this->metadata['self_signed']) &&
-				$this->metadata['self_signed'] == '1') {
-			unset($options['ssl']['cafile']);
-			$options['ssl']['allow_self_signed'] = TRUE;
-		} else {
-			if (!file_exists($options['ssl']['cafile'])) {
-				throw new \Exception('CA certificate file not found on '
-						. $options['ssl']['cafile']);
-			}
-		}
-
-		$result = stream_context_set_option($this->context, $options);
-		if (FALSE === $result) {
-			throw new \Exception('Error setting options for ssl context');
-		}
-
-		if ($fetch_cookie_name === TRUE) {
-			// Fetch cookie name
-			$res = $this->identity_query('getCookieNameForToken', 'POST');
-			$this->cookiename = preg_replace('/^string=/', '', $res);
-		} else {
-			$this->cookiename = self::cookiename;
-		}
-
-
-		// Retrieve token from GET or cookie (IE bug)
-		if (isset($_GET[$this->cookiename]) &&
-				(!isset($_COOKIE[$this->cookiename]) ||
-				 $_COOKIE[$this->cookiename] != $_GET[$this->cookiename])) {
-
-			// Internet Explorer workaround
-			if (isset($_SERVER['HTTPS'])) {
-				$this->token = $_GET[$this->cookiename];
-			}
-
-			setcookie($this->cookiename, $this->token, 0, '/',
-					$_SERVER['HTTP_HOST'], TRUE);
-		} elseif (isset($_COOKIE[$this->cookiename])) {
-			// Incorrect encoding of + to " "
-			$this->token = preg_replace('/ /', '+',
-					$_COOKIE[$this->cookiename]);
-		}
+        $this->createStream();
+        $this->set_cookie_name($fetch_cookie_name);
+        $this->readToken();
 	}
 
 	/**
@@ -433,5 +384,82 @@ class Handler {
 			. $_SERVER['SERVER_PORT']
 			. $_SERVER['REQUEST_URI'];
 	}
+
+    /**
+     * Creates data stream to server with SSL options
+     *
+     * @internal
+	 * @throws \Exception On error
+     */
+
+    private function createStream() {
+		$this->context = stream_context_create();
+        $options = array('ssl' =>
+                array(
+                    'verify_peer' => TRUE,
+                    'cafile' => $this->path . '/crt/' . $this->env . '/ca.crt',
+                    'capture_peer_cert' => TRUE,
+                    ));
+
+        if (isset($this->metadata['self_signed']) &&
+                $this->metadata['self_signed'] == '1') {
+            unset($options['ssl']['cafile']);
+            $options['ssl']['allow_self_signed'] = TRUE;
+        } else {
+            if (!file_exists($options['ssl']['cafile'])) {
+                throw new \Exception('CA certificate file not found on '
+                        . $options['ssl']['cafile']);
+            }
+        }
+
+        $result = stream_context_set_option($this->context, $options);
+
+		if (FALSE === $result) {
+			throw new \Exception('Error setting options for ssl context');
+		}
+    }
+
+    /**
+     * Prepares cookie name, using the default one or asking the server for
+     *
+     * @internal
+     * @param boolean $ask_server Ask server for cookie name if TRUE
+     */
+
+    private function set_cookie_name($ask_server = FALSE) {
+        if (TRUE === $ask_server) {
+            $res = $this->identity_query('getCookieNameForToken', 'POST');
+            $this->cookiename = preg_replace('/^string=/', '', $res);
+        } else {
+            $this->cookiename = self::cookiename;
+        }
+    }
+
+
+    /**
+     * Reads SSO token from either cookie or GET parameter (solves IE issues
+     * with two letter domains)
+     *
+     * @internal
+     */
+    private function readToken() {
+		// Retrieve token from GET or cookie (IE bug)
+		if (isset($_GET[$this->cookiename]) &&
+				(!isset($_COOKIE[$this->cookiename]) ||
+				 $_COOKIE[$this->cookiename] != $_GET[$this->cookiename])) {
+
+			// Internet Explorer workaround
+			if (isset($_SERVER['HTTPS'])) {
+				$this->token = $_GET[$this->cookiename];
+			}
+
+			setcookie($this->cookiename, $this->token, 0, '/',
+					$_SERVER['HTTP_HOST'], TRUE);
+		} elseif (isset($_COOKIE[$this->cookiename])) {
+			// Incorrect encoding of + to " "
+			$this->token = preg_replace('/ /', '+',
+					$_COOKIE[$this->cookiename]);
+		}
+    }
 
 }
