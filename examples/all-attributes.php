@@ -2,7 +2,7 @@
 
 require_once('../vendor/autoload.php');
 
-$a = new OpenSSO\Handler();
+$a = new US\OpenSSO\Handler();
 
 if ($a->check_and_force_sso()) {
 	echo '<h1>Your attributes:</h1>';
