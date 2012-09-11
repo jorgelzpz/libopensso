@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0
+ * @version 1.0.4
  * @package libopensso-php
  */
 
@@ -88,6 +88,8 @@ class User {
 
     /**
      * Magic __get method
+     * @param string $name Attribute name
+     * @return mixed Attribute value
      */
     public function __get($name) {
         return $this->handler->attribute($name);

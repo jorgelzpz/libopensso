@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a3" title="libopensso-php">
-  <file path="US/OpenSSO/InternalHandler.php" hash="4c335fa52a33069545e93b357e8db89e" package="libopensso-php">
+  <file path="US/OpenSSO/InternalHandler.php" hash="538830567fbe98560469245a0a7b8103" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0"/>
+      <tag line="2" name="version" description="1.0.4"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
@@ -20,7 +20,7 @@
       </docblock>
       <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
         <name>VERSION</name>
-        <value><![CDATA['1.0.1-alpha']]></value>
+        <value><![CDATA['1.0.4']]></value>
         <docblock line="19">
           <description><![CDATA[Library version, used inside User-Agent]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -290,18 +290,15 @@ with two letter domains)]]></description>
       </method>
     </class>
   </file>
-  <file path="US/OpenSSO/User.php" hash="dc8ac59f0b16c11121027b07cc18b5d7" package="libopensso-php">
+  <file path="US/OpenSSO/User.php" hash="459a3598f4ee89b5f3f2093276263ca9" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0"/>
+      <tag line="2" name="version" description="1.0.4"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
-    <parse_markers>
-      <error line="89" code="50015">Argument $name is missing from the Docblock of __get()</error>
-    </parse_markers>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
       <name>User</name>
       <full_name>\US\OpenSSO\User</full_name>
@@ -401,65 +398,71 @@ OpenSSO login page if not currently logged in]]></description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="92" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="94" package="">
         <name>__get</name>
         <type>function</type>
         <docblock line="89">
           <description><![CDATA[Magic __get method]]></description>
           <long-description><![CDATA[]]></long-description>
-        </docblock>
-        <argument line="92">
-          <name>$name</name>
-          <default><![CDATA[]]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="102" package="">
-        <name>attributeAsArray</name>
-        <type>function</type>
-        <docblock line="96">
-          <description><![CDATA[Reads attribute value and returns it as an array]]></description>
-          <long-description><![CDATA[]]></long-description>
-          <tag line="96" name="param" description="Attribute name" type="string" variable="$name">
+          <tag line="89" name="param" description="Attribute name" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="96" name="return" description="Values for attribute" type="Array">
-            <type by_reference="false">Array</type>
+          <tag line="89" name="return" description="Attribute value" type="mixed">
+            <type by_reference="false">mixed</type>
           </tag>
         </docblock>
-        <argument line="102">
+        <argument line="94">
           <name>$name</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="112" package="">
-        <name>allAttributes</name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="104" package="">
+        <name>attributeAsArray</name>
         <type>function</type>
-        <docblock line="106">
-          <description><![CDATA[Returns all attributes for current user]]></description>
+        <docblock line="98">
+          <description><![CDATA[Reads attribute value and returns it as an array]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="106" name="param" description="Whether to return values as arrays" type="boolean" variable="$use_arrays">
-            <type by_reference="false">boolean</type>
+          <tag line="98" name="param" description="Attribute name" type="string" variable="$name">
+            <type by_reference="false">string</type>
           </tag>
-          <tag line="106" name="return" description="Associative array of attribute =&gt; value" type="Array">
+          <tag line="98" name="return" description="Values for attribute" type="Array">
             <type by_reference="false">Array</type>
           </tag>
         </docblock>
-        <argument line="112">
+        <argument line="104">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="114" package="">
+        <name>allAttributes</name>
+        <type>function</type>
+        <docblock line="108">
+          <description><![CDATA[Returns all attributes for current user]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="108" name="param" description="Whether to return values as arrays" type="boolean" variable="$use_arrays">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="108" name="return" description="Associative array of attribute =&gt; value" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+        <argument line="114">
           <name>$use_arrays</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="123" package="">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="125" package="">
         <name>currentUrl</name>
         <type>function</type>
-        <docblock line="116">
+        <docblock line="118">
           <description><![CDATA[Returns current URL]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="116" name="internal" description=""/>
-          <tag line="116" name="return" description="Current URL" type="string">
+          <tag line="118" name="internal" description=""/>
+          <tag line="118" name="return" description="Current URL" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
