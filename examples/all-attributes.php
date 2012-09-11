@@ -2,7 +2,7 @@
 
 require_once('../vendor/autoload.php');
 
-$u = new US\OpenSSO\User();
+$u = new \US\OpenSSO\User();
 
 if ($u->enforceAuthentication()) {
 	echo '<h1>Your attributes:</h1>';

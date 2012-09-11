@@ -2,7 +2,7 @@
 
 require_once('../vendor/autoload.php');
 
-$u = new US\OpenSSO\User();
+$u = new \US\OpenSSO\User();
 
 if ($u->isAuthenticated()) {
     echo "Hi, " . $u->uid;
