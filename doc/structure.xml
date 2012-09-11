@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a3" title="libopensso-php">
-  <file path="US/OpenSSO/Handler.php" hash="8ff541e8bbef348befe8c074ec9771f8" package="libopensso-php">
+  <file path="US/OpenSSO/InternalHandler.php" hash="4c335fa52a33069545e93b357e8db89e" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -10,16 +10,16 @@
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
-      <name>Handler</name>
-      <full_name>\US\OpenSSO\Handler</full_name>
+      <name>InternalHandler</name>
+      <full_name>\US\OpenSSO\InternalHandler</full_name>
       <extends/>
       <docblock line="13">
-        <description><![CDATA[Class for OpenSSO integration]]></description>
+        <description><![CDATA[Helper class for OpenSSO integration]]></description>
         <long-description><![CDATA[]]></long-description>
         <tag line="13" name="package" description="libopensso-php"/>
       </docblock>
       <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
-        <name>version</name>
+        <name>VERSION</name>
         <value><![CDATA['1.0.1-alpha']]></value>
         <docblock line="19">
           <description><![CDATA[Library version, used inside User-Agent]]></description>
@@ -27,7 +27,7 @@
         </docblock>
       </constant>
       <constant namespace="US\OpenSSO" line="27" package="libopensso-php">
-        <name>cookiename</name>
+        <name>DEFAULT_COOKIENAME</name>
         <value><![CDATA['iPlanetDirectoryPro']]></value>
         <docblock line="24">
           <description><![CDATA[Default cookie name]]></description>
@@ -125,151 +125,341 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="151" package="">
-        <name>check_and_force_sso</name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="102" package="">
+        <name>validateToken</name>
         <type>function</type>
-        <docblock line="145">
-          <description><![CDATA[Forces OpenSSO login]]></description>
-          <long-description><![CDATA[]]></long-description>
-          <tag line="145" name="param" description="Return URL. If not specified, current URL is used" type="string" variable="$gotourl">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="145" name="return" description="User has a valid SSO session or not" type="boolean">
-            <type by_reference="false">boolean</type>
-          </tag>
-        </docblock>
-        <argument line="151">
-          <name>$gotourl</name>
-          <default><![CDATA['']]></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="179" package="">
-        <name>check_sso</name>
-        <type>function</type>
-        <docblock line="173">
+        <docblock line="96">
           <description><![CDATA[Checks if current user has a valid SSO session]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="173" name="return" description="User has a valid SSO session or not" type="boolean">
+          <tag line="96" name="return" description="User has a valid SSO session or not" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="219" package="">
-        <name>fetch_attributes</name>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="142" package="">
+        <name>fetchAttributes</name>
         <type>function</type>
-        <docblock line="212">
+        <docblock line="135">
           <description><![CDATA[Fetchs user attributes]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="212" name="internal" description=""/>
-          <tag line="212" name="return" description="" type="void">
+          <tag line="135" name="internal" description=""/>
+          <tag line="135" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="269" package="">
-        <name>identity_query</name>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="192" package="">
+        <name>doRequest</name>
         <type>function</type>
-        <docblock line="258">
+        <docblock line="181">
           <description><![CDATA[Connects to an OpenSSO identity service and retrieves answer]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="258" name="internal" description=""/>
-          <tag line="258" name="param" description="Web service to be queried" type="string" variable="$service">
+          <tag line="181" name="internal" description=""/>
+          <tag line="181" name="param" description="Web service to be queried" type="string" variable="$service">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="258" name="param" description="HTTP method to be used" type="string" variable="$method">
+          <tag line="181" name="param" description="HTTP method to be used" type="string" variable="$method">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="258" name="param" description="Query that have to be appended to the URL" type="string" variable="$query">
+          <tag line="181" name="param" description="Query that have to be appended to the URL" type="string" variable="$query">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="258" name="return" description="Answer from server" type="string">
+          <tag line="181" name="return" description="Answer from server" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="258" name="throws" description="Thrown on connection problems and when HTTP response code is not 200" type="\Exception">
+          <tag line="181" name="throws" description="Thrown on connection problems and when HTTP response code is not 200" type="\Exception">
             <type by_reference="false">\Exception</type>
           </tag>
         </docblock>
-        <argument line="269">
+        <argument line="192">
           <name>$service</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="269">
+        <argument line="192">
           <name>$method</name>
           <default><![CDATA['GET']]></default>
           <type/>
         </argument>
-        <argument line="269">
+        <argument line="192">
           <name>$query</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="364" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="287" package="">
         <name>attribute</name>
         <type>function</type>
-        <docblock line="357">
+        <docblock line="280">
           <description><![CDATA[Returns an attribute value/values]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="357" name="param" description="Attribute name" type="string" variable="$atr">
+          <tag line="280" name="param" description="Attribute name" type="string" variable="$atr">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="357" name="param" description="Whether to cast to array even if attribute has a single value" type="boolean" variable="$force_array">
+          <tag line="280" name="param" description="Whether to cast to array even if attribute has a single value" type="boolean" variable="$force_array">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="364">
+        <argument line="287">
           <name>$atr</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="364">
+        <argument line="287">
           <name>$force_array</name>
           <default><![CDATA[FALSE]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="386" package="">
-        <name>all_attributes</name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="309" package="">
+        <name>allAttributes</name>
         <type>function</type>
-        <docblock line="381">
+        <docblock line="304">
           <description><![CDATA[Returns all attributes]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="381" name="param" description="Force use of arrays even on single valued attributes" type="boolean" variable="$force_arrays">
+          <tag line="304" name="param" description="Force use of arrays even on single valued attributes" type="boolean" variable="$force_arrays">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
-        <argument line="386">
+        <argument line="309">
           <name>$force_arrays</name>
           <default><![CDATA[FALSE]]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="408" package="">
-        <name>logout</name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="330" package="">
+        <name>getLoginUrl</name>
         <type>function</type>
-        <docblock line="403">
-          <description><![CDATA[Logs out user from OpenSSO]]></description>
+        <docblock line="325">
+          <description><![CDATA[Returns login URL for current environment]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="403" name="param" description="URL to return to after logging out" type="string" variable="$gotourl">
+          <tag line="325" name="return" description="OpenSSO login URL" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
-        <argument line="408">
-          <name>$gotourl</name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="339" package="">
+        <name>getLogoutUrl</name>
+        <type>function</type>
+        <docblock line="334">
+          <description><![CDATA[Returns logout URL for current environment]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="334" name="return" description="OpenSSO logout URL" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="350" package="">
+        <name>createStream</name>
+        <type>function</type>
+        <docblock line="343">
+          <description><![CDATA[Creates data stream to server with SSL options]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="343" name="internal" description=""/>
+          <tag line="343" name="throws" description="On error" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="384" package="">
+        <name>setCookieName</name>
+        <type>function</type>
+        <docblock line="377">
+          <description><![CDATA[Prepares cookie name, using the default one or asking the server for]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="377" name="internal" description=""/>
+          <tag line="377" name="param" description="Ask server for cookie name if TRUE" type="boolean" variable="$ask_server">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="384">
+          <name>$ask_server</name>
+          <default><![CDATA[FALSE]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="400" package="">
+        <name>readToken</name>
+        <type>function</type>
+        <docblock line="394">
+          <description><![CDATA[Reads SSO token from either cookie or GET parameter (solves IE issues
+with two letter domains)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="394" name="internal" description=""/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="US/OpenSSO/User.php" hash="dc8ac59f0b16c11121027b07cc18b5d7" package="libopensso-php">
+    <docblock line="2">
+      <description><![CDATA[OpenSSO integration library for PHP]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="license" description="MIT"/>
+      <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
+      <tag line="2" name="version" description="1.0"/>
+      <tag line="2" name="package" description="libopensso-php"/>
+    </docblock>
+    <parse_markers>
+      <error line="89" code="50015">Argument $name is missing from the Docblock of __get()</error>
+    </parse_markers>
+    <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
+      <name>User</name>
+      <full_name>\US\OpenSSO\User</full_name>
+      <extends/>
+      <docblock line="13">
+        <description><![CDATA[Implements methods to manage OpenSSO interactions]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="package" description="libopensso-php"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="23" package="libopensso-php">
+        <name>$handler</name>
+        <default><![CDATA[]]></default>
+        <docblock line="20">
+          <description><![CDATA[OpenSSO internal handler]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="34" package="">
+        <name>__construct</name>
+        <type>function</type>
+        <docblock line="25">
+          <description><![CDATA[Creates a new OpenSSO user manager]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="25" name="param" description="Which environment from metadata should this helper use" type="string" variable="$env">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="25" name="param" description="When true cookie name will be fetched from server using getCookieNameForToken" type="boolean" variable="$ask_server">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="25" name="param" description="Directory to load metadata from" type="string" variable="$metadata_dir">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$env</name>
+          <default><![CDATA['prodV1']]></default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$ask_server</name>
+          <default><![CDATA[FALSE]]></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$metadata_dir</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="430" package="">
-        <name>current_url</name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="50" package="">
+        <name>enforceAuthentication</name>
         <type>function</type>
-        <docblock line="423">
+        <docblock line="42">
+          <description><![CDATA[Enforces OpenSSO authentication by redirecting user to
+OpenSSO login page if not currently logged in]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="42" name="param" description="optional URL to return after authentication" type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="return" description="determines if user was authenticated or not" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$url</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="68" package="">
+        <name>isAuthenticated</name>
+        <type>function</type>
+        <docblock line="63">
+          <description><![CDATA[Checks current user authentication state]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="63" name="return" description="user has a valid session" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="79" package="">
+        <name>logout</name>
+        <type>function</type>
+        <docblock line="72">
+          <description><![CDATA[Logs out current user]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="param" description="optional URL to return after authentication" type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="determines if user was authenticated or not" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$url</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="92" package="">
+        <name>__get</name>
+        <type>function</type>
+        <docblock line="89">
+          <description><![CDATA[Magic __get method]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="92">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="102" package="">
+        <name>attributeAsArray</name>
+        <type>function</type>
+        <docblock line="96">
+          <description><![CDATA[Reads attribute value and returns it as an array]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="param" description="Attribute name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="96" name="return" description="Values for attribute" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+        <argument line="102">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="112" package="">
+        <name>allAttributes</name>
+        <type>function</type>
+        <docblock line="106">
+          <description><![CDATA[Returns all attributes for current user]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="106" name="param" description="Whether to return values as arrays" type="boolean" variable="$use_arrays">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="106" name="return" description="Associative array of attribute =&gt; value" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+        <argument line="112">
+          <name>$use_arrays</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="123" package="">
+        <name>currentUrl</name>
+        <type>function</type>
+        <docblock line="116">
           <description><![CDATA[Returns current URL]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="423" name="internal" description=""/>
-          <tag line="423" name="return" description="Current URL" type="string">
+          <tag line="116" name="internal" description=""/>
+          <tag line="116" name="return" description="Current URL" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
