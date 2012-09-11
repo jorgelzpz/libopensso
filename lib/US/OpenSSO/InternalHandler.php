@@ -74,7 +74,7 @@ class InternalHandler {
 			$metadata_dir = '') {
 		// Set current path
 		$this->path = empty($metadata_dir) ?
-			dirname(__FILE__) . '/../../../metadata_default/' :
+			dirname(__FILE__) . '/../../../metadata/' :
 			$metadata_dir;
 
 		// Initialization
