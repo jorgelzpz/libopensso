@@ -31,7 +31,7 @@ class User {
 	 * @param string $metadata_dir Directory to load metadata from
      */
 
-	public function __construct($env = 'prodV1', 
+	public function __construct($env = 'ssopre.us.es_001', 
             $ask_server = FALSE,
 			$metadata_dir = '') {
 

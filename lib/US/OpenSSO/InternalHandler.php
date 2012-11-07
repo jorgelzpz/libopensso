@@ -70,8 +70,7 @@ class InternalHandler {
 	 * @param string $metadata_dir Directory to load metadata from
 	 * @throws \Exception On error
 	 */
-	public function __construct($env = 'prodV1', $fetch_cookie_name = FALSE,
-			$metadata_dir = '') {
+    public function __construct($env = 'ssopre.us.es_001', $fetch_cookie_name = FALSE, $metadata_dir = '') {
 		// Set current path
 		$this->path = empty($metadata_dir) ?
 			dirname(__FILE__) . '/../../../metadata/' :
