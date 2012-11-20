@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a3" title="libopensso-php">
-  <file path="US/OpenSSO/InternalHandler.php" hash="538830567fbe98560469245a0a7b8103" package="libopensso-php">
+  <file path="US/OpenSSO/InternalHandler.php" hash="6d64bc2bfcdd4615c93718da0e4bb534" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.4"/>
+      <tag line="2" name="version" description="1.0.5"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
@@ -20,7 +20,7 @@
       </docblock>
       <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
         <name>VERSION</name>
-        <value><![CDATA['1.0.4']]></value>
+        <value><![CDATA['1.0.5']]></value>
         <docblock line="19">
           <description><![CDATA[Library version, used inside User-Agent]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -111,7 +111,7 @@
         </docblock>
         <argument line="73">
           <name>$env</name>
-          <default><![CDATA['prodV1']]></default>
+          <default><![CDATA['ssopre.us.es_001']]></default>
           <type/>
         </argument>
         <argument line="73">
@@ -119,69 +119,69 @@
           <default><![CDATA[FALSE]]></default>
           <type/>
         </argument>
-        <argument line="74">
+        <argument line="73">
           <name>$metadata_dir</name>
           <default><![CDATA['']]></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="102" package="">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="101" package="">
         <name>validateToken</name>
         <type>function</type>
-        <docblock line="96">
+        <docblock line="95">
           <description><![CDATA[Checks if current user has a valid SSO session]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="96" name="return" description="User has a valid SSO session or not" type="boolean">
+          <tag line="95" name="return" description="User has a valid SSO session or not" type="boolean">
             <type by_reference="false">boolean</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="142" package="">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="141" package="">
         <name>fetchAttributes</name>
         <type>function</type>
-        <docblock line="135">
+        <docblock line="134">
           <description><![CDATA[Fetchs user attributes]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="135" name="internal" description=""/>
-          <tag line="135" name="return" description="" type="void">
+          <tag line="134" name="internal" description=""/>
+          <tag line="134" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="192" package="">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="191" package="">
         <name>doRequest</name>
         <type>function</type>
-        <docblock line="181">
+        <docblock line="180">
           <description><![CDATA[Connects to an OpenSSO identity service and retrieves answer]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="181" name="internal" description=""/>
-          <tag line="181" name="param" description="Web service to be queried" type="string" variable="$service">
+          <tag line="180" name="internal" description=""/>
+          <tag line="180" name="param" description="Web service to be queried" type="string" variable="$service">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="181" name="param" description="HTTP method to be used" type="string" variable="$method">
+          <tag line="180" name="param" description="HTTP method to be used" type="string" variable="$method">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="181" name="param" description="Query that have to be appended to the URL" type="string" variable="$query">
+          <tag line="180" name="param" description="Query that have to be appended to the URL" type="string" variable="$query">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="181" name="return" description="Answer from server" type="string">
+          <tag line="180" name="return" description="Answer from server" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="181" name="throws" description="Thrown on connection problems and when HTTP response code is not 200" type="\Exception">
+          <tag line="180" name="throws" description="Thrown on connection problems and when HTTP response code is not 200" type="\Exception">
             <type by_reference="false">\Exception</type>
           </tag>
         </docblock>
-        <argument line="192">
+        <argument line="191">
           <name>$service</name>
           <default><![CDATA[]]></default>
           <type/>
         </argument>
-        <argument line="192">
+        <argument line="191">
           <name>$method</name>
           <default><![CDATA['GET']]></default>
           <type/>
         </argument>
-        <argument line="192">
+        <argument line="191">
           <name>$query</name>
           <default><![CDATA['']]></default>
           <type/>
@@ -190,14 +190,17 @@
       <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="287" package="">
         <name>attribute</name>
         <type>function</type>
-        <docblock line="280">
+        <docblock line="279">
           <description><![CDATA[Returns an attribute value/values]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="280" name="param" description="Attribute name" type="string" variable="$atr">
+          <tag line="279" name="param" description="Attribute name" type="string" variable="$atr">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="280" name="param" description="Whether to cast to array even if attribute has a single value" type="boolean" variable="$force_array">
+          <tag line="279" name="param" description="Whether to cast to array even if attribute has a single value" type="boolean" variable="$force_array">
             <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="279" name="return" description="Array value(s) or false if attribute was not found" type="mixed">
+            <type by_reference="false">mixed</type>
           </tag>
         </docblock>
         <argument line="287">
@@ -290,13 +293,13 @@ with two letter domains)]]></description>
       </method>
     </class>
   </file>
-  <file path="US/OpenSSO/User.php" hash="459a3598f4ee89b5f3f2093276263ca9" package="libopensso-php">
+  <file path="US/OpenSSO/User.php" hash="7cf0bae1202617bd60c8656535a023b0" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.4"/>
+      <tag line="2" name="version" description="1.0.5"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
@@ -334,7 +337,7 @@ with two letter domains)]]></description>
         </docblock>
         <argument line="34">
           <name>$env</name>
-          <default><![CDATA['prodV1']]></default>
+          <default><![CDATA['ssopre.us.es_001']]></default>
           <type/>
         </argument>
         <argument line="35">
