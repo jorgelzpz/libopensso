@@ -78,7 +78,7 @@ class User {
 
     public function logout($url = '') {
         // Remove IE cookie
-        setcookie($this->cookiename, time() - 3600, '/');
+        setcookie($this->cookiename, '', time() - 3600, '/');
 
         $url = (!empty($url) ? $url : $this->currentUrl());
         $logout_url = $this->handler->getLogoutUrl();
