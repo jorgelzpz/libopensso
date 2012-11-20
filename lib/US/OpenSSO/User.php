@@ -25,15 +25,15 @@ class User {
     /**
      * Creates a new OpenSSO user manager
      *
-	 * @param string $env Which environment from metadata should this helper use
-	 * @param boolean $ask_server When true cookie name will be
-	 *        fetched from server using getCookieNameForToken
-	 * @param string $metadata_dir Directory to load metadata from
+     * @param string $env Which environment from metadata should this helper use
+     * @param boolean $ask_server When true cookie name will be
+     *        fetched from server using getCookieNameForToken
+     * @param string $metadata_dir Directory to load metadata from
      */
 
-	public function __construct($env = 'ssopre.us.es_001', 
+    public function __construct($env = 'ssopre.us.es_001', 
             $ask_server = FALSE,
-			$metadata_dir = '') {
+            $metadata_dir = '') {
 
         $this->handler = new InternalHandler($env, $ask_server,
                 $metadata_dir);
@@ -115,19 +115,19 @@ class User {
         return $this->handler->allAttributes($use_arrays);
     }
 
-	/**
-	 * Returns current URL
-	 *
-	 * @internal
-	 * @return string Current URL
-	 */
+    /**
+     * Returns current URL
+     *
+     * @internal
+     * @return string Current URL
+     */
 
-	private function currentUrl() {
-		return (isset($_SERVER['HTTPS']) ? 'https' : 'http')
-			. '://' . $_SERVER['SERVER_NAME']  . ':'
-			. $_SERVER['SERVER_PORT']
-			. $_SERVER['REQUEST_URI'];
-	}
+    private function currentUrl() {
+        return (isset($_SERVER['HTTPS']) ? 'https' : 'http')
+            . '://' . $_SERVER['SERVER_NAME']  . ':'
+            . $_SERVER['SERVER_PORT']
+            . $_SERVER['REQUEST_URI'];
+    }
 
 
     
