@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a3" title="libopensso-php">
-  <file path="US/OpenSSO/InternalHandler.php" hash="6d64bc2bfcdd4615c93718da0e4bb534" package="libopensso-php">
+  <file path="US/OpenSSO/InternalHandler.php" hash="2101f3c340a40c2cc6d75b10d03d7cf9" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.5"/>
+      <tag line="2" name="version" description="1.0.6"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
@@ -20,7 +20,7 @@
       </docblock>
       <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
         <name>VERSION</name>
-        <value><![CDATA['1.0.5']]></value>
+        <value><![CDATA['1.0.6']]></value>
         <docblock line="19">
           <description><![CDATA[Library version, used inside User-Agent]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -111,7 +111,7 @@
         </docblock>
         <argument line="73">
           <name>$env</name>
-          <default><![CDATA['ssopre.us.es_001']]></default>
+          <default><![CDATA['opensso-pre.us.es']]></default>
           <type/>
         </argument>
         <argument line="73">
@@ -293,13 +293,13 @@ with two letter domains)]]></description>
       </method>
     </class>
   </file>
-  <file path="US/OpenSSO/User.php" hash="7cf0bae1202617bd60c8656535a023b0" package="libopensso-php">
+  <file path="US/OpenSSO/User.php" hash="a443af25d7812dde29e180044f0e6735" package="libopensso-php">
     <docblock line="2">
       <description><![CDATA[OpenSSO integration library for PHP]]></description>
       <long-description><![CDATA[]]></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.5"/>
+      <tag line="2" name="version" description="1.0.6"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
@@ -337,7 +337,7 @@ with two letter domains)]]></description>
         </docblock>
         <argument line="34">
           <name>$env</name>
-          <default><![CDATA['ssopre.us.es_001']]></default>
+          <default><![CDATA['opensso-pre.us.es']]></default>
           <type/>
         </argument>
         <argument line="35">

@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.5
+ * @version 1.0.6
  * @package libopensso-php
  */
 
@@ -19,7 +19,7 @@ class InternalHandler {
     /**
      * Library version, used inside User-Agent
      */
-    const VERSION = '1.0.5';
+    const VERSION = '1.0.6';
 
     /**
      * Default cookie name
@@ -70,7 +70,7 @@ class InternalHandler {
      * @param string $metadata_dir Directory to load metadata from
      * @throws \Exception On error
      */
-    public function __construct($env = 'ssopre.us.es_001', $fetch_cookie_name = FALSE, $metadata_dir = '') {
+    public function __construct($env = 'opensso-pre.us.es', $fetch_cookie_name = FALSE, $metadata_dir = '') {
         // Set current path
         $this->path = empty($metadata_dir) ?
             dirname(__FILE__) . '/../../../metadata/' :

@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.5
+ * @version 1.0.6
  * @package libopensso-php
  */
 
@@ -31,7 +31,7 @@ class User {
      * @param string $metadata_dir Directory to load metadata from
      */
 
-    public function __construct($env = 'ssopre.us.es_001', 
+    public function __construct($env = 'opensso-pre.us.es',
             $ask_server = FALSE,
             $metadata_dir = '') {
 
