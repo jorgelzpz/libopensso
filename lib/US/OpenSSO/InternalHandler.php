@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.6
+ * @version 1.0.7
  * @package libopensso-php
  */
 
@@ -19,7 +19,7 @@ class InternalHandler {
     /**
      * Library version, used inside User-Agent
      */
-    const VERSION = '1.0.6';
+    const VERSION = '1.0.7';
 
     /**
      * Default cookie name
@@ -226,14 +226,6 @@ class InternalHandler {
         $options = stream_context_get_options($this->context);
         $site_cert =
             openssl_x509_parse($options['ssl']['peer_certificate']);
-
-        if (isset($this->metadata['crt_serialnumber'])) {
-            if ($site_cert['serialNumber'] !=
-                    $this->metadata['crt_serialnumber']) {
-                throw new \Exception('Invalid certificate serial number '
-                        . '('.$site_cert['serialNumber'].')');
-            }
-        }
 
         $path = isset($uri['path']) ? $uri['path'] : '/';
         if (!empty($query)) {

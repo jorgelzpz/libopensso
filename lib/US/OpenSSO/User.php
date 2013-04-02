@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.6
+ * @version 1.0.7
  * @package libopensso-php
  */
 
