@@ -1,3 +1,6 @@
+1.0.7:
+	* Stop checking certificate serial numbers. Using CA certificates it
+	  makes no sense
 1.0
 	* Stop using packs. Now using metadata.ini file
 	* Redirect to /UI/Logout on logout always
