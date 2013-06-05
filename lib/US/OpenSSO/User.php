@@ -111,7 +111,7 @@ class User {
      * @param boolean $use_arrays Whether to return values as arrays
      * @return Array Associative array of attribute => value
      */
-    public function allAttributes($use_arrays) {
+    public function allAttributes($use_arrays = FALSE) {
         return $this->handler->allAttributes($use_arrays);
     }
 
@@ -128,8 +128,4 @@ class User {
             . $_SERVER['SERVER_PORT']
             . $_SERVER['REQUEST_URI'];
     }
-
-
-    
-
 }

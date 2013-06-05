@@ -1,3 +1,6 @@
+1.0.8:
+	* User::allAttributes() required a parameter value. Make it optional
+
 1.0.7:
 	* Stop checking certificate serial numbers. Using CA certificates it
 	  makes no sense
