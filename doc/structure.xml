@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="libopensso-php">
-  <file path="phpdoc.dist.xml" hash="7bc8078a140e993a7be4cb8430bfd3a1" package="Default">
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file phpdoc.dist.xml</error>
-    </parse_markers>
-  </file>
-  <file path="lib/US/OpenSSO/InternalHandler.php" hash="285ff3736e40c2b14c430564d2196e16" package="libopensso-php">
+  <file path="InternalHandler.php" hash="11cccab79452b817811bde31a251f97f" package="libopensso-php">
     <docblock line="2">
       <description>OpenSSO integration library for PHP</description>
       <long-description></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.6"/>
+      <tag line="2" name="version" description="1.0.8"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
@@ -26,7 +21,7 @@
       <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
         <name>VERSION</name>
         <full_name>VERSION</full_name>
-        <value>'1.0.6'</value>
+        <value>'1.0.8'</value>
         <docblock line="19">
           <description>Library version, used inside User-Agent</description>
           <long-description></long-description>
@@ -300,13 +295,13 @@ with two letter domains)</description>
       </method>
     </class>
   </file>
-  <file path="lib/US/OpenSSO/User.php" hash="a443af25d7812dde29e180044f0e6735" package="libopensso-php">
+  <file path="User.php" hash="30fc27738c2715317de0b1b91cf90cbc" package="libopensso-php">
     <docblock line="2">
       <description>OpenSSO integration library for PHP</description>
       <long-description></long-description>
       <tag line="2" name="license" description="MIT"/>
       <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
-      <tag line="2" name="version" description="1.0.6"/>
+      <tag line="2" name="version" description="1.0.8"/>
       <tag line="2" name="package" description="libopensso-php"/>
     </docblock>
     <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
@@ -461,7 +456,7 @@ OpenSSO login page if not currently logged in</description>
         </docblock>
         <argument line="114">
           <name>$use_arrays</name>
-          <default></default>
+          <default>FALSE</default>
           <type/>
         </argument>
       </method>
