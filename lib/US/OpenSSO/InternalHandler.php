@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.8
+ * @version 1.0.9
  * @package libopensso-php
  */
 
@@ -19,7 +19,7 @@ class InternalHandler {
     /**
      * Library version, used inside User-Agent
      */
-    const VERSION = '1.0.8';
+    const VERSION = '1.0.9';
 
     /**
      * Default cookie name
@@ -79,7 +79,7 @@ class InternalHandler {
         // Initialization
         $metadata = @parse_ini_file($this->path . '/metadata.ini',
                 TRUE);
-        
+
         if (!isset($metadata[$env])) {
             throw new \Exception('Metada for ' . $env . ' not found');
         } else {
@@ -191,7 +191,7 @@ class InternalHandler {
     protected function doRequest($service, $method = 'GET', $query = '') {
         $uri = parse_url($this->metadata['ws_base_url'] . $service);
 
-        $socket_dest = $uri['scheme'] == 'http' ? 'tcp' : 'ssl';
+        $socket_dest = $uri['scheme'] == 'http' ? 'tcp' : 'tls';
         $socket_dest .= '://';
 
         switch ($uri['scheme']) {
