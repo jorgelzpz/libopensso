@@ -1,3 +1,6 @@
+1.0.9:
+	* Use TLS instead of SSL
+
 1.0.8:
 	* User::allAttributes() required a parameter value. Make it optional
 
