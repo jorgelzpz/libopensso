@@ -4,7 +4,7 @@
  *
  * @license MIT
  * @author Jorge López Pérez <jorge@adobo.org>
- * @version 1.0.9
+ * @version 1.0.10
  * @package libopensso-php
  */
 
@@ -19,7 +19,7 @@ class InternalHandler {
     /**
      * Library version, used inside User-Agent
      */
-    const VERSION = '1.0.9';
+    const VERSION = '1.0.10';
 
     /**
      * Default cookie name
